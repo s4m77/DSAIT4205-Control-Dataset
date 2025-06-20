@@ -15,11 +15,11 @@ In order to isolate these variables and "change only one variable" at a time, we
 
 ### The Controlled Experiment: *Continuous Line* Dataset
 
-To investigate this, I designed a synthetic *toy problem* dataset called **"Continuous Line"**. The dataset is purposefully simple: it consists of 224x224 pixel images, each containing a single white line on a black background. The line's position is randomized, and its orientation can be horizontal, vertical, or oblique (slanted at a random angle).
+To investigate this, I designed a synthetic *toy problem* dataset called **Continuous Line**. The dataset is purposefully simple: it consists of 224x224 pixel images, each containing a single white line on a black background. The line's position is randomized, and its orientation can be horizontal, vertical, or oblique (slanted at a random angle).
 
 ![Raw Images](raw_images.png)
 
-*Figure 1: Example images from the "Continuous Line" dataset, showing the three classes with randomized positions and angles.*
+*Figure 1: Example images from the Continuous Line dataset, showing the three classes with randomized positions and angles.*
 
 Why this design? It creates a scenario where the task of reconstruction can be solved in two different ways:
 
@@ -30,7 +30,7 @@ This setup allows us to directly test the hypothesis: Does block masking encoura
 
 ### Visualizing the Masking Strategies
 
-The difference between the two masking strategies becomes starkly clear on our "Continuous Line" dataset. The visualization below, inspired by Figure 6 in the MAE paper, shows how **block masking** removes a single large chunk, leaving an easy-to-solve gap. In contrast, **random masking** creates a much more difficult puzzle that requires a global understanding to solve.
+The difference between the two masking strategies becomes starkly clear on our Continuous Line dataset. The visualization below, inspired by Figure 6 in the MAE paper, shows how **block masking** removes a single large chunk, leaving an easy-to-solve gap. In contrast, **random masking** creates a much more difficult puzzle that requires a global understanding to solve.
 
 ![Masking Comparison](masked_images.png)
 *Figure 2: A direct comparison of masking strategies. The task posed by random masking is visibly more complex than the simple completion task posed by block masking.*
@@ -39,7 +39,7 @@ The difference between the two masking strategies becomes starkly clear on our "
 
 The experiment would proceed as follows:
 
-1. Train two identical MAE models from scratch on the "Continuous Line" dataset.
+1. Train two identical MAE models from scratch on the Continuous Line dataset.
     * **Model A:** Trained with **random masking** (75% ratio).
     * **Model B:** Trained with **block masking** (50% ratio).
 2. **Hypothesis:** Model B (block masking) will achieve a very low reconstruction error quickly, but the learned features will be weak. Model A (random masking) will have a harder time with reconstruction, but will learn a more robust, global representation of "lines".
@@ -48,4 +48,4 @@ The experiment would proceed as follows:
 
 ### Code and Dataset
 
-The "Continuous Line" dataset was generated using [this](data.ipynb) Jupyter notebook, which is available on [GitHub](https://github.com/s4m77/DSAIT4205-Control-Dataset). Running the full notebook will generate the `data` directory.
+The Continuous Line dataset was generated using [this](data.ipynb) Jupyter notebook, also available [here](https://github.com/s4m77/DSAIT4205-Control-Dataset/blob/main/data.ipynb). Running the full notebook will generate the `data` directory.
